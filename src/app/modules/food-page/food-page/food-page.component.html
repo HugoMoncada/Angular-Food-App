@@ -1,0 +1,60 @@
+<div class="container pt-5">
+          
+    <app-not-found [visible]="!food"
+        notFoundMessage="Food Item Not Found!"
+        resetLinkText= "Go to Home page"
+        resetLinkLink= "/"
+    ></app-not-found>
+
+    <div class="row  align-items-center" *ngIf="food">
+        <div class="col-sm-12 col-md-6">
+            <div class="card image">
+                <img [src]="food.imageUrl" alt="">
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-head d-flex justify-content-between  align-items-center">
+                        <h4 class="card-title">{{food.name}}</h4>
+                        <span class="favorite {{food.favorite?'':'not'}}">
+                            ❤
+                        </span> 
+                    </div>
+                    
+                    <span>
+                        <star-rating 
+                            [value]="food.stars" 
+                            [totalstars]="5" 
+                            checkedcolor="red" 
+                            uncheckedcolor="black" 
+                            size="24px" 
+                            [readonly]="true"
+                            >
+                        </star-rating>
+                    </span>
+                    <div class="cook-data mb-3">
+                        <div class="mb-3">
+                            <span *ngFor="let origin of food.origins" class="badge rounded-pill bg-light text-secondary me-1">
+                                {{origin}}
+                            </span>
+                        </div>
+                        <div class="cook-time">
+                            <span>🕒</span>
+                            Time to cook about {{food.cookTime}} minutes
+                        </div>
+                    </div>
+    
+                    <div class="price d-flex align-items-center">
+                        <h4 class="me-2">Price: </h4>
+                        <h3>
+                            {{food.price | currency}}
+                        </h3>
+                    </div>
+                </div>
+                <button class="btn btn-primary" (click)="addToCart(food)">Add To Cart</button>
+            </div>
+    
+        </div>
+    </div>
+</div>

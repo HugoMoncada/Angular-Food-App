@@ -1,0 +1,17 @@
+.image{
+    border-radius: 5%;
+    overflow: hidden;
+}
+
+.favorite{
+    font-size: 32px;
+    color: gray;
+}
+
+button{
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+
+.card {
+    border: none;
+}

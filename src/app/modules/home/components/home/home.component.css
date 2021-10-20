@@ -1,0 +1,36 @@
+.card{
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+div a {
+    text-decoration: none;
+}
+
+div a:hover {
+    opacity: 0.9;
+}
+
+
+.card-head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cook-data{
+    font-size: 13px;
+    font-style: italic;
+    color: gray;
+}
+
+.favorite.not {
+    color: gray;
+}
+
+.price{
+    font-size: 18px;
+}
+
+image{
+    max-height: 415px;
+}

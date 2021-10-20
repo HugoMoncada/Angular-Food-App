@@ -1,0 +1,55 @@
+<div class="container pt-5">
+    <div class="row" *ngIf="cart && cart.items.length > 0">
+        <!-- Items -->
+        <div class="col-sm-12 col-md-9 food mb-3" >
+
+            <div class="row mb-3 border-bottom border-dark pb-2" *ngFor="let cartItem of cart.items">
+
+                <div class="col-md-2 d-flex justify-content-center mb-2">
+                    <img [src]="cartItem.food.imageUrl" alt="food image" class="rounded-circle">
+                </div>
+                <div class="col d-flex justify-content-center align-items-center mb-2">
+                    <a routerLink="/food/{{cartItem.food.id}}">
+                        {{cartItem.food.name}}
+                    </a>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center mb-1">
+                    <select  #quantitySelect (change)="changeQuantity(cartItem, quantitySelect.value)" >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center mb-2">
+                    <p class="mb-0">
+                        <!-- This is calling the function in the cart item, the total price -->
+                        {{cartItem.price | currency}}
+                    </p>
+                </div>
+                <div class="col d-flex justify-content-center align-items-center mb-1">
+                    <button (click)="removeFromCart(cartItem)" class="removebtn">Remove</button>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Summary -->
+        <div class="col-md-3 px-5">
+            <h2>Summary</h2>
+            <div class="d-flex justify-content-between">
+                <h6>Items: {{cart.items.length}}</h6>
+                <h6>{{cart.totalPrice | currency}}</h6>
+            </div>
+        </div>
+    </div>
+        
+    <app-not-found [visible]="!cart || cart.items.length <= 0"
+        notFoundMessage="Cart Page Is Empty"
+        resetLinkText= "Go to Home page"
+        resetLinkLink= "/"
+    ></app-not-found>
+
+</div>
+

@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-auto col-lg-7 mx-auto mt-4 mb-5">
+            <app-search></app-search>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mb-4 d-none d-md-flex">
+        <app-tags></app-tags>
+    </div>
+          
+    <app-not-found [visible]="!foods || foods.length <= 0"
+        notFoundMessage="No Items Found!"
+        resetLinkText= "Go to Home page"
+        resetLinkLink= "/"
+    ></app-not-found>
+
+    <div class="row">
+        <div class="col-12 col-md-4 mb-4" *ngFor="let food of foods">
+            <a routerLink="/food/{{food.id}}">
+                <div class="card h-100">
+                    <img src="{{food.imageUrl}}" alt="">
+                    <div class="card-body">
+                        <div class="card-head">
+                            <h5 class="card-title">{{food.name}}</h5>
+                            <span class="favorite {{food.favorite?'':'not'}}">
+                                ❤
+                            </span> 
+                        </div>
+                        
+                        <span>
+                            <star-rating 
+                                [value]="food.stars" 
+                                [totalstars]="5" 
+                                checkedcolor="red" 
+                                uncheckedcolor="black" 
+                                size="24px" 
+                                [readonly]="true"
+                                >
+                            </star-rating>
+                        </span>
+                        <div class="cook-data mb-2 d-flex justify-content-between">
+                            <div>
+                                <span *ngFor="let origin of food.origins" class="badge rounded-pill bg-light text-secondary me-1">
+                                    {{origin}}
+                                </span>
+                            </div>
+                            <div class="cook-time">
+                                <span>🕒</span>
+                                {{food.cookTime}}
+                            </div>
+                        </div>
+
+                        <div class="price">
+                            <span>
+                                {{food.price | currency}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
